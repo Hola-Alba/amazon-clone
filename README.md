@@ -21,7 +21,7 @@ You can find the original tutorial at https://www.youtube.com/watch?v=X1ahXNYkpL
 <h2 align="center">
 Why
 </h2>
-Because learning HTML, CSS an JS at the same time as React and Solidity is pure gold, specially if you learn with amazing tutors such as Diego de Granda and Gregory McCubbin.
+We used Solidity for the creation of secure smart contracts. Javascript and React are being employed for frontend development and testing purposes. The Hardhat framework has been selected to support local blockchain development and testing with its comprehensive toolset. Ethers.js will facilitate interaction with the Ethereum blockchain.
 <br>
 <br>
   
