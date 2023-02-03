@@ -8,7 +8,7 @@ import close from '../assets/close.svg'
 
 const Product = ({ item, provider, account, dappazon, togglePop }) => {
   const [order, setOrder] = useState(null)
-  const [hasBought, setHasBought] = useState(false)
+  const [hasBought, setHasBought] =useState(false)
 
   const fetchDetails = async () => {
     const events = await dappazon.queryFilter("Buy")
@@ -25,8 +25,8 @@ const Product = ({ item, provider, account, dappazon, togglePop }) => {
   const buyHandler = async () => {
     const signer = await provider.getSigner()
 
-    // Buy item...
-    let transaction = await dappazon.connect(signer).buy(item.id, { value: item.cost })
+    //Buy item
+    let transaction = await dappazon.connect(signer).buy(item.id, { value: item.cost})
     await transaction.wait()
 
     setHasBought(true)
@@ -42,7 +42,7 @@ const Product = ({ item, provider, account, dappazon, togglePop }) => {
         <div className="product__image">
           <img src={item.image} alt="Product" />
         </div>
-        <div className="product__overview">
+        <div className='product__overview'>
           <h1>{item.name}</h1>
 
           <Rating value={item.rating} />
@@ -60,21 +60,20 @@ const Product = ({ item, provider, account, dappazon, togglePop }) => {
           <p>
             {item.description}
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima rem, iusto,
-            consectetur inventore quod soluta quos qui assumenda aperiam, eveniet doloribus
-            commodi error modi eaque! Iure repudiandae temporibus ex? Optio!
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
           </p>
-        </div>
+          </div>
 
-        <div className="product__order">
-          <h1>{ethers.utils.formatUnits(item.cost.toString(), 'ether')} ETH</h1>
+          <div className="product__order">
+            <h1>{ethers.utils.formatUnits(item.cost.toString(), 'ether')} ETH</h1>
+          
 
           <p>
             FREE delivery <br />
             <strong>
-              {new Date(Date.now() + 345600000).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+              {new Date(Date.now() + 345600000).toLocaleDateString(undefined, {weekday: 'long', month: 'long', day: 'numeric'})}
             </strong>
-          </p>
+          </p> 
 
           {item.stock > 0 ? (
             <p>In Stock.</p>
@@ -86,32 +85,31 @@ const Product = ({ item, provider, account, dappazon, togglePop }) => {
             Buy Now
           </button>
 
-          <p><small>Ships from</small> Dappazon</p>
-          <p><small>Sold by</small> Dappazon</p>
+            <p><small>Ships from</small> Dappazon</p>
+            <p><small>Sold by</small> Dappazon</p>
 
-          {order && (
-            <div className='product__bought'>
-              Item bought on <br />
-              <strong>
-                {new Date(Number(order.time.toString() + '000')).toLocaleDateString(
-                  undefined,
-                  {
-                    weekday: 'long',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric'
-                  })}
-              </strong>
-            </div>
-          )}
-        </div>
+            {order && (
+              <div className='product__bought'>
+                Item bought on <br />
+                <strong>
+                  {new Date(Number(order.time.toString() + '000')).toLocaleDateString(
+                    undefined,
+                    {
+                      weekday: 'long',
+                      hour: 'numeric',
+                      minute: 'numeric', 
+                      second: 'numeric'
+                    })}
+                </strong>
+                </div>
+            )}
+           </div>
 
-
-        <button onClick={togglePop} className="product__close">
-          <img src={close} alt="Close" />
-        </button>
-      </div>
-    </div >
+            <button onClick={togglePop} className="product__close">
+              <img src={close} alt="Close" />
+            </button>
+      </div>   
+    </div>
   );
 }
 

@@ -4,6 +4,7 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
+const { ethers } = require("hardhat")
 const hre = require("hardhat")
 const { items } = require("../src/items.json")
 
@@ -12,18 +13,18 @@ const tokens = (n) => {
 }
 
 async function main() {
-  // Setup accounts
+  //Code goes here...
   const [deployer] = await ethers.getSigners()
 
-  // Deploy Dappazon
+  //Deploy Dappazon
   const Dappazon = await hre.ethers.getContractFactory("Dappazon")
   const dappazon = await Dappazon.deploy()
   await dappazon.deployed()
 
-  console.log(`Deployed Dappazon Contract at: ${dappazon.address}\n`)
+  console.log(`Deployed Dappazon Contract at: ${dappazon. address}\n`)
 
-  // Listing items...
-  for (let i = 0; i < items.length; i++) {
+  //Listing items
+  for (let i= 0; i < items.length; i++) {
     const transaction = await dappazon.connect(deployer).list(
       items[i].id,
       items[i].name,
@@ -34,10 +35,13 @@ async function main() {
       items[i].stock,
     )
 
-    await transaction.wait()
+      await transaction.wait()
 
-    console.log(`Listed item ${items[i].id}: ${items[i].name}`)
+      console.log(`Listed item ${items[i].id}: ${items[i].name}`)
+
   }
+
+  
 }
 
 // We recommend this pattern to be able to use async/await everywhere
